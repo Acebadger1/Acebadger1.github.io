@@ -7,6 +7,3 @@ Helpful links:
 * https://html5up.net/solid-state
 * https://domains.google.com/m/registrar/search?searchTerm=robertgirdner.io&hl=en
 * https://www.godaddy.com/domainsearch/find?checkAvail=1&tmskey=&domainToCheck=robertgirdner.com
-1. Memes 1
-1. Memes 2
-1. Memes 2.5
