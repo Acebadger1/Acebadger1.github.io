@@ -50,7 +50,7 @@
 					<div id="main">
 						<div class="inner">
 							<h1>Senior Design Project</h1>
-							<span class="image main"><img src="images/pic13.jpg" alt="" /></span>
+							<span class="image main"><img src="images/pic07.jpg" alt="" /></span>
 							<p>For my senior design project, my team was tasked with building an apparatus for the Mayborn Museum at Baylor that would demonstrate the process of fuel injection.
 								We had to design, build, and test our apparatus to make sure that it not only met the safety specifications required by the museum, but also effectively
 							 demonstrated the phenomena of the atomization of a fluid in a fuel injection system. </p>
@@ -61,12 +61,105 @@
 						<!-- Images of microscope stand -->
 						<div class="inner">
 							<h2>Fuel Injection Apparatus CAD Drawings</h2>
-							<div class="tiles">
-										<a href="/Senior Design Documents/CAD Drawings/Fuel Injection Apparatus Dimensioned Drawings.pdf" target="_blank">CAD Drawings</a>
-							</div>
+							<a href="/Senior Design Documents/CAD Drawings/Fuel Injection Apparatus Dimensioned Drawings.pdf" target="_blank">CAD Drawings</a>
 						</div>
 						
 					</div>
+
+					<div id="code">
+						<div class = inner>
+
+						<button onclick="myFunction()"> Show/Hide Code </button>
+						
+					<div class="code" id="ghost" style="display:inherit"> 
+						<h2>Arduino Code:</h2>
+					<pre><code>
+/*
+ * Authors: Heath McCabe, Breana Leal
+ * Project: Fuel Injector Demo Model
+ * Course: EGR 4390, Spring 2019
+ * POE: Dr. Don McErlean
+ * 
+ * This should monitor an input pin, and set the Motor to an on or off state
+ * depending on the input pin
+ */
+
+// Set pin numbers ---------- ---------- ----------
+#define motorControlPin 10    // Output pin used to send control signal to motor
+#define monitorPin      13    // Input pin used to monitor whether button is pressed
+#define period          1000  // ms
+#define maxTime         20    // How long motor will stay on after button press
+
+// Define state variables ---------- ----------
+bool monitorState = false, monitorPrevState = false, motorState = false;
+unsigned long time_now = 0;
+int motorTime = 0;            // How much longer the motor should be on
+
+
+// ---------- SETUP ----------
+void setup() {
+  // Initialize IO pins
+  pinMode(monitorPin, INPUT);
+  pinMode(motorControlPin, OUTPUT);
+  digitalWrite(motorControlPin, motorState);
+
+  Serial.begin(115200); // For using the console: debugging
+  
+}
+
+// ---------- LOOP ----------
+void loop() {
+
+  // Check the monitor pin
+  monitorState = digitalRead(monitorPin);
+  
+  // Check for rising edge on the monitorPin
+  // Last condition used to require motor is off before checking again
+  // Timer would not decreased with pump plugged in 
+  //       without the last condition in place
+  if(monitorState && !monitorPrevState && (motorTime < -2) ){
+    motorTime = maxTime;
+  }
+
+  // Update state variable
+  monitorPrevState = monitorState;
+
+
+  // Handle turning on / off motor
+  if(motorTime > 0){
+    // Turn on the motor
+    motorState = true;
+    power_motor( motorState );
+  } else if(motorTime == 0) {
+    // Turn off the motor
+    motorState = false;
+    power_motor( motorState );
+  }
+
+  // Decrease motor time variable if 1 second has passed
+  if(millis() > (time_now + period)){
+        motorTime = motorTime - 1;
+        time_now = millis();
+
+        // Used for debugging:
+        Serial.print("Motor time: ");
+        Serial.print(motorTime);
+        Serial.print("\n");
+        Serial.print("Time now: ");
+        Serial.print(time_now);
+        Serial.print("\n");
+    }
+}
+
+//----------------------------------------------------------------
+// Writes state to the motorControlPin to turn on or off the motor
+void power_motor(bool state) {
+  digitalWrite(motorControlPin, state);
+}
+					</code></pre>
+				</div>
+				</div>
+				</div>
 
 				<!-- Footer -->
 					<footer id="footer">
@@ -91,6 +184,25 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<!-- <script>
+				function myFunction() {
+					document.getElementsByClassName("ghost").style.display = "none";
+				}
+			</script> -->
+
+			<script>
+				function myFunction() {
+					var state = document.getElementById("ghost").style.display;
+					console.log(state);
+
+					if(state=="inherit") {
+						document.getElementById("ghost").style.display = "none";
+					}
+					else {
+						document.getElementById("ghost").style.display = "inherit";
+					}
+				}
+			</script>
 
 	</body>
 </html>
