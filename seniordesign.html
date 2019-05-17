@@ -97,9 +97,6 @@ void setup() {
   pinMode(monitorPin, INPUT);
   pinMode(motorControlPin, OUTPUT);
   digitalWrite(motorControlPin, motorState);
-
-  Serial.begin(115200); // For using the console: debugging
-  
 }
 
 // ---------- LOOP ----------
@@ -135,14 +132,6 @@ void loop() {
   if(millis() > (time_now + period)){
         motorTime = motorTime - 1;
         time_now = millis();
-
-        // Used for debugging:
-        Serial.print("Motor time: ");
-        Serial.print(motorTime);
-        Serial.print("\n");
-        Serial.print("Time now: ");
-        Serial.print(time_now);
-        Serial.print("\n");
     }
 }
 
