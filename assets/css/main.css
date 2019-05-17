@@ -2336,9 +2336,13 @@ input, select, textarea {
 			margin: 0 0 3em 0;
 			width: 100%;
 		}
-
+			
+			/* I added the first 3 lines within the .image.main img to center these elements - Heath */
 			.image.main img {
-				width: 100%;
+				display: block;
+  				margin-left: auto;
+  				margin-right: auto;
+				width: 80%;
 			}
 
 			@media screen and (max-width: 736px) {
