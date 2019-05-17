@@ -107,7 +107,7 @@ void loop() {
   
   // Check for rising edge on the monitorPin
   // Last condition used to require motor is off before checking again
-  // Timer would not decreased with pump plugged in 
+  // Timer would not decrease, while the pump was plugged in,
   //       without the last condition in place
   if(monitorState && !monitorPrevState && (motorTime < -2) ){
     motorTime = maxTime;
