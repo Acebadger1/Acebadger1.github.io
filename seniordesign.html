@@ -63,11 +63,12 @@
 
 					<div id="code">
 						<div class = inner>
-						<button onclick="myFunction()"> Show/Hide Code </button>
 						
-					<div class="code" id="ghost" style="display:inherit"> 
+						
+					<div class="code" > 
 						<h2>Arduino Code:</h2>
-					<pre><code>
+						<button onclick="myFunction()"> Show/Hide Code </button> <br/><br/>
+					<pre id="ghost" style="display:inherit"><code>
 /*
  * Authors: Heath McCabe, Breana Leal
  * Project: Fuel Injector Demo Model
@@ -167,11 +168,6 @@ void power_motor(bool state) {
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<!-- <script>
-				function myFunction() {
-					document.getElementsByClassName("ghost").style.display = "none";
-				}
-			</script> -->
 
 			<script>
 				function myFunction() {
