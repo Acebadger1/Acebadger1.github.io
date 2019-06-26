@@ -2335,14 +2335,15 @@ input, select, textarea {
 			display: block;
 			margin: 0 0 3em 0;
 			width: 100%;
+			text-align: center;
 		}
 			
 			/* I added the first 3 lines within the .image.main img to center these elements - Heath */
 			.image.main img {
-				display: block;
+				display: inline-block;
   				margin-left: auto;
   				margin-right: auto;
-				width: 80%;
+				width: 40%;
 			}
 
 			@media screen and (max-width: 736px) {
@@ -2812,7 +2813,7 @@ input, select, textarea {
 /* Header */
 
 	#header {
-		padding: 8em 0 0.1em 0 ;
+		padding: 2em 0 0.1em 0 ; /*Heath - first val was 8em*/
 	}
 
 		#header .logo {
@@ -3301,6 +3302,20 @@ input, select, textarea {
 		max-width: 68em;
 		margin: 0 auto;
 		padding: 0 2.5em;
+	}
+
+
+	/* Trying to center the head tagline - Heath */
+	#wrapper > * > .inner > header {
+		text-align: center;
+	}
+
+	#wrapper > * > .inner > header > h1 > .centered {
+		padding-bottom: -2em;
+		display: inline-block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 20%;
 	}
 
 		@media screen and (max-width: 736px) {
